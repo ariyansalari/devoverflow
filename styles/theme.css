@@ -9,4 +9,22 @@
     .h1-bold{
         @apply text-[30px] font-bold leading-[42px] tracking-tighter;
     }
+    .h2-bold{
+        @apply text-[24px] font-bold leading-[31.2px]
+    }
+    .h2-semibold{
+        @apply text-[24px] font-semibold leading-[31.2px]
+    }
+    .h3-bold{
+        @apply text-[20px] font-bold leading-[26px]
+    }
+    .h3-semibold{
+        @apply text-[20px] font-bold leading-[24.8px]
+    }
+    .base-medium{
+        @apply text-[18px] font-medium leading-[25.2px]
+    }
+    .base-semibold{
+        @apply text-[18px] font-semibold leading-[25.2px]
+    }
 }
