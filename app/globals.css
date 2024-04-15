@@ -16,11 +16,7 @@ font-family: "Inter", sans-serif;
 @apply flex justify-start items-center;
 }
 .card-wrapper {
-<<<<<<< HEAD
-@apply bg-light-900 dark:dark-gradient shadow-light-100 dar
-=======
 @apply bg-light-900 dark:dark-gradient shadow-light-100 dark:shadow-dark-100
->>>>>>> 275e939ed0e15d405b2079c95f8f81bba40156bf
 }
 .btn {
 @apply bg-light-800 dark:bg-dark-300 !important;
@@ -49,11 +45,7 @@ rgba(19, 22, 28, 0.7) 100%
 }
 }
 .no-focus {
-<<<<<<< HEAD
-@apply focus-visible:ring-0 focus-visible:ring-transparent focus
-=======
     @apply focus-visible:ring-0 focus-visible:ring-transparent  focus-visible:ring-offset-0 !important;
->>>>>>> 275e939ed0e15d405b2079c95f8f81bba40156bf
 }
 .active-theme {
 filter: invert(53%) sepia(98%) saturate(3332%) hue-rotate(0deg)
@@ -86,8 +78,6 @@ border-radius: 50px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
 background: #555;
-<<<<<<< HEAD
-=======
 }
 /* Markdown Start */
 .markdown a {
@@ -140,5 +130,4 @@ display: none;
 .no-scrollbar {
 -ms-overflow-style: none; /* IE and Edge */
 scrollbar-width: none; /* Firefox */
->>>>>>> 275e939ed0e15d405b2079c95f8f81bba40156bf
 }
