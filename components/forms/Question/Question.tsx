@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -15,17 +15,17 @@ import { useForm } from 'react-hook-form'
 import {zodResolver} from "@hookform/resolvers/zod"
 import { QuestionsSchema } from '@/lib'
 import { z } from "zod"
-import { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
 
 
 
+const type:any='create';
 
 const Question = () => {
   const editorRef = useRef(null);
-
+const [isSubmiting,setIsSubmitiing]=useState(false)
     const form = useForm<z.infer<typeof QuestionsSchema>>({
         resolver: zodResolver(QuestionsSchema),
         defaultValues: {
@@ -35,10 +35,15 @@ const Question = () => {
         },
       })
     
-      // 2. Define a submit handler.
       function onSubmit(values: z.infer<typeof QuestionsSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
+  setIsSubmitiing(true)
+  try{
+
+  }catch (error){
+
+  }finally{
+    setIsSubmitiing(false)
+  }
         console.log(values)
       }
       const handleInputKeyDown =(e:React.KeyboardEvent<HTMLInputElement>,field:any)=>{
@@ -102,6 +107,7 @@ const Question = () => {
               <Editor
               
         apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
+      
         onInit={(_evt, editor) => {
           // @ts-ignore
           editorRef.current = editor}}
@@ -169,7 +175,12 @@ const Question = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className='primary-gradient w-fit !text-light-900' disabled={isSubmiting}>
+          {isSubmiting?(<>
+          {type==='edit'?"Editing...":"Posting..."}
+          </>):(<>
+          {type==='edit'?"Edit Question":"Ask a Question"}</>)}
+        </Button>
       </form>
     </Form>
   )
