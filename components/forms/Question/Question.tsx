@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { useForm } from 'react-hook-form'
 import {zodResolver} from "@hookform/resolvers/zod"
-import { QuestionsSchema } from '@/lib'
+import { QuestionsSchema, createQuestion } from '@/lib'
 import { z } from "zod"
 import { Editor } from '@tinymce/tinymce-react';
 import { Badge } from '@/components/ui/badge'
@@ -35,10 +35,10 @@ const [isSubmiting,setIsSubmitiing]=useState(false)
         },
       })
     
-      function onSubmit(values: z.infer<typeof QuestionsSchema>) {
+      async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
   setIsSubmitiing(true)
   try{
-
+await createQuestion({})
   }catch (error){
 
   }finally{
@@ -105,7 +105,8 @@ const [isSubmiting,setIsSubmitiing]=useState(false)
               <FormLabel className='paragraph-semibold text-dark400_light800 '>Detailed explanation of your problem  <span className='text-primary-500'>*</span></FormLabel>
               <FormControl className='mt-3.5'>
               <Editor
-              
+              onBlur={field.onBlur}
+              onEditorChange={(content)=>field.onChange(content)}
         apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
       
         onInit={(_evt, editor) => {
