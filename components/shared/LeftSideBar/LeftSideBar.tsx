@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 'use client'
 import { Button } from '@/components/ui/button'
 import { sidebarLinks } from '@/constants'
@@ -29,12 +30,12 @@ import React from 'react'
             <div className="flex flex-col gap-3 max-lg:items-center ">
                 <Link href={'/sign-in'}>
                   <Button className="w-full  small-medium btn-secondary min-h-[41px] rounded-lg px-4 py-3 shadow-none">
-                    <Image src={'/assets/icons/account.svg'} width={20} height={20} className='invert-colors lg:hidden'/>
+                    <Image src={'/assets/icons/account.svg'} width={20} height={20} className='invert-colors lg:hidden' alt={'accountIcons'}/>
                     <span className="primary-text-gradient max-lg:hidden">Log In</span>
                   </Button>
                 </Link>
                 <Link href={'/sign-up'}>
-                <Image src={'/assets/icons/sign-up.svg'} width={20} height={20} className='invert-colors lg:hidden'/>
+                <Image src={'/assets/icons/sign-up.svg'} width={20} height={20} className='invert-colors lg:hidden' alt={'signUpIcons'}/>
 
                   <Button className="w-full small-medium light-border-2 btn-tertiary min-h-[41px] rounded-lg px-4 py-3 shadow-none text-dark400_light900 max-lg:hidden">
                   <span className=" max-lg:hidden">Sign Up</span>
