@@ -58,21 +58,21 @@ const QuestionCard = ({_id,title,tags,author,upvotes,createdAt,answers,views}:Qu
             <Metric 
             imgUrl="/assets/icons/like.svg"
             alt="Upvotes"
-            value={formatNumbers(upvotes)}
+            value={formatNumbers(upvotes??1000)}
             title="Votes"
             textStyles="small-medium text-dark400_light800"
             />
                   <Metric 
             imgUrl="/assets/icons/message.svg"
             alt="message"
-            value={answers.length}
+            value={answers?.length}
             title="Answers"
             textStyles="small-medium text-dark400_light800"
             />
                   <Metric 
             imgUrl="/assets/icons/eye.svg"
             alt="eye"
-            value={formatNumbers(views)}
+            value={formatNumbers(views??11000)}
             title="Views"
             textStyles="small-medium text-dark400_light800"
             />

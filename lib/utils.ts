@@ -38,14 +38,15 @@ export const getTimestamp = (createdAt: Date): string => {
 };
 
 
+
 export const formatNumbers = (num: number): string => {
-  if (num >= 1000000) {
+    if (num >= 1000000) {
       const formattedNum = (num / 1000000).toFixed(1);
       return `${formattedNum}M`;
-  } else if (Math.abs(num) >= 1000) {
+    } else if (num >= 10000) {
       const formattedNum = (num / 1000).toFixed(1);
       return `${formattedNum}K`;
-  } else {
+    } else {
       return num.toString();
-  }
-};
+    }
+  };
