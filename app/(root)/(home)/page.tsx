@@ -5,43 +5,16 @@ import NoResult from '@/components/shared/NoResult/NoResult'
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar/LocalSearchBar'
 import { Button } from '@/components/ui/button'
 import { HomePageFilters } from '@/constants/filters'
+import { getQuestion } from '@/lib'
 import Link from 'next/link'
 import React from 'react'
 
-const Home = () => {
-  const questions = [
-    {
-        _id: "1",
-        title: "Cascading Deletes in SQLAlchemy?",
-        tags: [{ _id: "1", name: "python" }, { _id: "2", name: "Sql" }],
-        author: { _id: "1", name: "John Doe", picture: "" },
-        upvotes: "11",
-        views: 670000,
-        answers: [],
-        createdAt: new Date('2021-09-01T12:00:00.000Z')
-    },
-    {
-        _id: "2",
-        title: "How to center a div ? because I'm a Back-End Developer",
-        tags: [{ _id: "1", name: "sql" }, { _id: "2", name: "css" }],
-        author: { _id: "1", name: "Mike Doe", picture: "" },
-        upvotes: "20",
-        views: 111112,
-        answers: [],
-        createdAt: new Date('2022-04-13T06:00:00.000Z')
-    },
-    {
-        _id: "3",
-        title: "how to write a function?",
-        tags: [{ _id: "1", name: "javascript" }, { _id: "2", name: "scss" }],
-        author: { _id: "1", name: "John Doe", picture: "" },
-        upvotes: "6",
-        views: 140000000,
-        answers: [],
-        createdAt: new Date('2021-09-01T12:00:00.000Z')
-    }
-];
+const Home =async () => {
   
+  
+const result =await getQuestion({})
+console.log(result);
+
   return (
     <>
  <div className='flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center'> 
@@ -56,7 +29,7 @@ const Home = () => {
  </div>
  <HomeFilters />
  <div className='mt-10 flex w-full flex-col gap-6'>
-  {questions.length >0? questions.map((question)=>(
+  {result.questions.length >0? result.questions.map((question)=>(
   <QuestionCard key={question._id} _id={question._id} title={question.title} tags={question.tags} author={question.author} upvotes={question.upvotes} views={question.views} answers={question.answers} createdAt={question.createdAt}/>
   )):<NoResult
   title={"There's no question to show"}

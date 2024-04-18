@@ -18,12 +18,19 @@ import { z } from "zod"
 import { Editor } from '@tinymce/tinymce-react';
 import { Badge } from '@/components/ui/badge'
 import Image from 'next/image'
+import { useRouter,usePathname } from 'next/navigation'
 
 
 
 const type:any='create';
-
-const Question = () => {
+interface Props {
+  mongoUserId:string;
+}
+const Question = ({mongoUserId}:Props) => {
+  console.log(mongoUserId);
+  
+  const router =useRouter()
+  const pathname=usePathname()
   const editorRef = useRef(null);
 const [isSubmiting,setIsSubmitiing]=useState(false)
     const form = useForm<z.infer<typeof QuestionsSchema>>({
@@ -34,18 +41,6 @@ const [isSubmiting,setIsSubmitiing]=useState(false)
           tags:[]
         },
       })
-    
-      async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
-  setIsSubmitiing(true)
-  try{
-await createQuestion({})
-  }catch (error){
-
-  }finally{
-    setIsSubmitiing(false)
-  }
-        console.log(values)
-      }
       const handleInputKeyDown =(e:React.KeyboardEvent<HTMLInputElement>,field:any)=>{
         if(e.key==='Enter' && field.name==="tags"){
           e.preventDefault()
@@ -76,6 +71,26 @@ await createQuestion({})
         form.setValue('tags',newTags)
 
       }
+      const onSubmit = async (values: z.infer<typeof QuestionsSchema>) => {
+        setIsSubmitiing(true);
+    
+        try {
+   
+            await createQuestion({
+              title: values.title,
+              content: values.explanation,
+              tags: values.tags,
+              author: JSON.parse(mongoUserId),
+              path: pathname,
+            });
+            router.push("/");
+          
+        } catch (error) {
+        } finally {
+          setIsSubmitiing(false);
+        }
+      };
+
   return (
     
     <Form {...form}>
