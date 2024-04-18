@@ -90,7 +90,7 @@ const deletedUser =await deleteUser({
     clerkId:id!
 })
 
-return NextResponse.json({message:'OK',user:mongoUser})
+return NextResponse.json({message:'OK',user:deletedUser})
     // Create a new user in your database
  }
   return new Response('', { status: 201 })

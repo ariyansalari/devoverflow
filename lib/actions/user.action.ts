@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use server'
 import User from "@/database/user.model"
 import { connectToDatabase } from ".."
