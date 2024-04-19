@@ -1,11 +1,11 @@
 import Question from '@/components/forms/Question/Question'
 import { getUserById } from '@/lib/actions/user.action'
+import { auth } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
 const AskQuestion = async() => {
-  // const {userId}=auth()
-  const userId='12345'
+  const {userId}=auth()
   if(!userId) redirect('/sign-in')
 
   const mogoUser =await getUserById({userId})
