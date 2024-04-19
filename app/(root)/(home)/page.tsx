@@ -13,7 +13,6 @@ const Home =async () => {
   
   
 const result =await getQuestion({})
-console.log(result);
 
   return (
     <>
