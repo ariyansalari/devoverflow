@@ -2,7 +2,7 @@
 'use server'
 import User from "@/database/user.model"
 import { connectToDatabase } from ".."
-import { CreateUserParams, DeleteUserParams, GetUserByIdParams, UpdateUserParams } from "./shared.types";
+import { CreateUserParams, DeleteUserParams, GetAllUsersParams, GetUserByIdParams, UpdateUserParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
 import Question from "@/database/question.model";
 
@@ -70,3 +70,18 @@ return deletedUser
       throw error;
     }
   };
+
+  export async function getAllUsers(params:GetAllUsersParams) {
+    try{
+connectToDatabase()
+
+      const {page=1,pageSize=20,filter,searchQuery}=params;
+      const users=await User.find({}).sort({createdAt:-1})
+      return{users}
+    }
+    catch(error){
+console.log(error);
+throw error
+
+    }
+  }
