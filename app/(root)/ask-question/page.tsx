@@ -9,7 +9,6 @@ const AskQuestion = async() => {
   if(!userId) redirect('/sign-in')
 
   const mogoUser =await getUserById({userId})
-  console.log(mogoUser);
   
   return (
     <div>

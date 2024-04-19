@@ -27,7 +27,6 @@ interface Props {
   mongoUserId:string;
 }
 const Question = ({mongoUserId}:Props) => {
-  console.log(mongoUserId);
   
   const router =useRouter()
   const pathname=usePathname()
@@ -46,7 +45,6 @@ const [isSubmiting,setIsSubmitiing]=useState(false)
           e.preventDefault()
           const tagInput =e.target as HTMLInputElement
           const tagValue =tagInput.value.trim()
-          console.log(tagValue);
           
           if( tagValue!==''){
             if(tagValue.length>15){
