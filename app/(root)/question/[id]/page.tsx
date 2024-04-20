@@ -3,6 +3,7 @@ import AllAnswers from '@/components/shared/AllAnswers/AllAnswers'
 import Metric from '@/components/shared/Metric/Metric'
 import ParseHTML from '@/components/shared/ParseHTML/ParseHTML'
 import RenderTag from '@/components/shared/RenderTag/RenderTag'
+import Votes from '@/components/shared/Votes/Votes'
 import { getQuestionById } from '@/lib'
 import { getUserById } from '@/lib/actions/user.action'
 import { formatNumbers, getTimestamp } from '@/lib/utils'
@@ -31,10 +32,19 @@ const page =async ({searchParams,params}) => {
             <p className='paragraph-semibold text-dark300_light700'>{result.author?.name}</p>
             </Link>
             <div className='flex justify-end'>
-                VOTING
+            <Votes
+          type='Question'
+          itemId={JSON.stringify(result._id)}
+          userId={JSON.stringify(mongoUser._id)}
+          upvotes={result.upvotes.length}
+          hasupVoted={result.upvotes.includes(mongoUser._id)}
+          downvote={result.downvotes.length}
+          hasdownVoted={result.downvotes.includes(mongoUser._id)}
+          hasSaved={mongoUser?.saved.includes(result._id)}
+          />
             </div>
         </div>
-        <h2 className='h2-semibold text-dark200_light800 text-left mt-3.5 w-full'>{result.title}</h2>
+        <h2 className='h2-semibold text-dark200_light800 mt-3.5 w-full text-left'>{result.title}</h2>
     </div>
     <div className='mb-8 mt-5 flex flex-wrap gap-4 '>
     <Metric 
@@ -65,7 +75,7 @@ const page =async ({searchParams,params}) => {
             <RenderTag key={tag._id} _id={tag._id} name={tag.name} showCount={false}/>
         ))}
     </div>
-<AllAnswers questionId={result._id} userId={JSON.stringify(mongoUser._id)}         totalAnswers={result?.answers?.length}
+<AllAnswers questionId={result._id} userId={mongoUser._id}         totalAnswers={result?.answers?.length}
  />
     <Answer question={result.content} questionId={JSON.stringify(result._id)} authorId={JSON.stringify(mongoUser._id)} />
     </>
