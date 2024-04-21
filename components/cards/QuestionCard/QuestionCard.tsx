@@ -17,7 +17,7 @@ author :{
     picture:string;
 
 };
-upvotes:number;
+upvotes:[];
 createdAt:Date;
 views:number;
 answers:Array<object>
@@ -58,7 +58,7 @@ const QuestionCard = ({_id,title,tags,author,upvotes,createdAt,answers,views}:Qu
             <Metric 
             imgUrl="/assets/icons/like.svg"
             alt="Upvotes"
-            value={formatNumbers(upvotes??1000)}
+            value={formatNumbers(upvotes.length)}
             title="Votes"
             textStyles="small-medium text-dark400_light800"
             />
