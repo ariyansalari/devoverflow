@@ -7,6 +7,7 @@ import React from 'react'
 interface QuestionProps {
 _id:string;
 title:string;
+clerkId?:string|null;
 tags:{
     _id:string;
     name:string;
@@ -22,7 +23,7 @@ createdAt:Date;
 views:number;
 answers:Array<object>
 }
-const QuestionCard = ({_id,title,tags,author,upvotes,createdAt,answers,views}:QuestionProps) => {
+const QuestionCard = ({_id,title,tags,author,upvotes,createdAt,answers,views,clerkId}:QuestionProps) => {
     
   return (
     <div className='card-wrapper rounded-[10px] p-9 sm:px-11'>

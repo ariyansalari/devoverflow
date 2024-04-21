@@ -9,6 +9,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { getJoinedDate } from '@/lib/utils'
 import ProfileLink from '@/components/shared/ProfileLink/ProfileLink'
 import Stats from '@/components/shared/Stats/Stats'
+import QuestionTab from '@/components/shared/QuestionTab/QuestionTab'
+import AnswerTab from '@/components/shared/AnswerTab/AnswerTab'
 
 const Page =async ({params,serachParams}:URLProps) => {
     const userInfo=await getUserInfo({userId:params.id})
@@ -25,12 +27,12 @@ const Page =async ({params,serachParams}:URLProps) => {
         {userInfo.user.location && (
           <ProfileLink imgUrl='/assets/icons/location.svg'  title={userInfo.user.location}/>
         )}
+        
              {userInfo.user.porifolioWebsite && (
           <ProfileLink imgUrl='/assets/icons/link.svg'  title={'Portfolio'} href={userInfo.user.porifolioWebsite}/>
         )}
           <ProfileLink imgUrl='/assets/icons/calendar.svg'  title={getJoinedDate(userInfo.user.joinedAt)}/>
         
-        {getJoinedDate(userInfo.user.joinedAt)}
     </div>
     {userInfo.user.bio &&(
         <p className='paragraph-regular text-dark400_light800 mt-8 '>
@@ -49,15 +51,15 @@ const Page =async ({params,serachParams}:URLProps) => {
     </SignedIn>
 </div>
     </div>
-    <Stats/>
+    <Stats totalQuestions={userInfo.totalQuestions} totalAnswer={userInfo.totalAnswers}/>
     <div className='mt-10 flex gap-10'>
     <Tabs defaultValue="top-posts" className="w-[400px]">
   <TabsList className="background-light800_dark400 min-h-[42px] p-1">
     <TabsTrigger value="top-posts" className="tab">Top Posts</TabsTrigger>
     <TabsTrigger value="answers" className="tab">Answers</TabsTrigger>
   </TabsList>
-  <TabsContent value="top-posts">Posts</TabsContent>
-  <TabsContent value="answers">Answers</TabsContent>
+  <TabsContent value="top-posts"><QuestionTab serachParams={serachParams} userId={userInfo.user._id} clerkId={clerkId} /></TabsContent>
+  <TabsContent value="answers" className="flex w-full flex-col gap-6"><AnswerTab serachParams={serachParams} userId={userInfo.user._id} clerkId={clerkId}/></TabsContent>
 </Tabs>
     </div>
     </>
