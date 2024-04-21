@@ -21,7 +21,6 @@ const page =async ({searchParams,params}) => {
     }
 
     const result =await getQuestionById ({questionId:params.id})
-    console.log(result);
     
   return (
     <>
@@ -36,11 +35,11 @@ const page =async ({searchParams,params}) => {
           type='Question'
           itemId={JSON.stringify(result._id)}
           userId={JSON.stringify(mongoUser._id)}
-          upvotes={result.upvotes.length}
-          hasupVoted={result.upvotes.includes(mongoUser._id)}
-          downvote={result.downvotes.length}
-          hasdownVoted={result.downvotes.includes(mongoUser._id)}
-          hasSaved={mongoUser?.saved.includes(result._id)}
+          upvotes={result?.upvotes?.length}
+          hasupVoted={result.upvotes?.includes(mongoUser._id)}
+          downvote={result.downvotes?.length}
+          hasdownVoted={result.downvotes?.includes(mongoUser._id)}
+          hasSaved={mongoUser?.saved?.includes(result._id)}
           />
             </div>
         </div>
@@ -71,7 +70,7 @@ const page =async ({searchParams,params}) => {
     </div>
     <ParseHTML data={result.content} />
     <div className='mt-8 flex flex-wrap gap-2'>
-        {result.tags.map((tag:any)=>(
+        {result.tags?.map((tag:any)=>(
             <RenderTag key={tag._id} _id={tag._id} name={tag.name} showCount={false}/>
         ))}
     </div>

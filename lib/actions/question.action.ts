@@ -10,7 +10,6 @@ import { revalidatePath } from "next/cache";
 export async function getQuestion(params:GetQuestionsParams) {
     try{
 connectToDatabase()
-
 const questions=await Question.find({}).populate({path:"tags",model:Tag}).populate({path:"author",model:User})
 
 return {questions}
@@ -37,7 +36,7 @@ export async function createQuestion(params:CreateQuestionParams) {
         const exitstingTag=await Tag.findOneAndUpdate({
             name:{$regex:new RegExp(`^${tag}$`,"i")}
         },{
-            $setOnInsert :{name:tag},$push:{question:question._id}
+            $setOnInsert :{name:tag},$push:{questions:question._id}
         },{upsert:true,new:true})
         tagDocuments.push(exitstingTag._id)
     }
