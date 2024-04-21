@@ -23,7 +23,6 @@ views:number;
 answers:Array<object>
 }
 const QuestionCard = ({_id,title,tags,author,upvotes,createdAt,answers,views}:QuestionProps) => {
-    console.log(views);
     
   return (
     <div className='card-wrapper rounded-[10px] p-9 sm:px-11'>
