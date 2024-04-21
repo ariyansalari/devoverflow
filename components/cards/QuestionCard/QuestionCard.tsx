@@ -17,7 +17,7 @@ author :{
     picture:string;
 
 };
-upvotes:number;
+upvotes:[];
 createdAt:Date;
 views:number;
 answers:Array<object>
