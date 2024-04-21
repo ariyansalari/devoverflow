@@ -10,7 +10,6 @@ import { revalidatePath } from "next/cache";
 export async function getQuestion(params:GetQuestionsParams) {
     try{
 connectToDatabase()
-
 const questions=await Question.find({}).populate({path:"tags",model:Tag}).populate({path:"author",model:User})
 
 return {questions}
