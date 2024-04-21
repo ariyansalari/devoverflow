@@ -36,7 +36,7 @@ export async function createQuestion(params:CreateQuestionParams) {
         const exitstingTag=await Tag.findOneAndUpdate({
             name:{$regex:new RegExp(`^${tag}$`,"i")}
         },{
-            $setOnInsert :{name:tag},$push:{question:question._id}
+            $setOnInsert :{name:tag},$push:{questions:question._id}
         },{upsert:true,new:true})
         tagDocuments.push(exitstingTag._id)
     }
