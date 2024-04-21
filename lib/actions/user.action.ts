@@ -2,7 +2,7 @@
 'use server'
 import User from "@/database/user.model"
 import { connectToDatabase } from ".."
-import { CreateUserParams, DeleteUserParams, GetAllUsersParams, GetSavedQuestionsParams, GetUserByIdParams, ToggleSaveQuestionParams, UpdateUserParams } from "./shared.types";
+import { CreateUserParams, DeleteUserParams, GetAllUsersParams, GetSavedQuestionsParams, GetUserByIdParams, GetUserStatsParams, ToggleSaveQuestionParams, UpdateUserParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
 import Question from "@/database/question.model";
 import Tag from "@/database/tag.model";
@@ -160,6 +160,50 @@ return {
   user,
   totalQuestions,
   totalAnswers
+}
+
+    }
+    catch(error){
+console.log(error);
+throw error
+
+    }
+  }
+
+  export async function getUserQuestions(params:GetUserStatsParams) {
+    try{
+connectToDatabase()
+const {userId,page=1,pageSize=10}=params
+const user=await User.findOne({clerkId:userId})
+
+const totalQuestions=await Question.countDocuments({author:userId})
+const userQuestions=await Question.find({author:userId}).sort({views:-1,upvotes:-1}).populate('tags','_id name').populate('author','_id clerkId name picture')
+
+return {
+  totalQuestions,
+ questions:userQuestions,
+}
+
+    }
+    catch(error){
+console.log(error);
+throw error
+
+    }
+  }
+
+  export async function getUserAnswer(params:GetUserStatsParams) {
+    try{
+connectToDatabase()
+const {userId,page=1,pageSize=10}=params
+const user=await User.findOne({clerkId:userId})
+
+const totalAnswer=await Answer.countDocuments({author:userId})
+const userAnswer=await Answer.find({author:userId}).sort({views:-1,upvotes:-1}).populate('question','_id title').populate('author','_id clerkId name picture')
+
+return {
+  totalAnswer,
+ questions:userAnswer,
 }
 
     }
