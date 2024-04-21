@@ -23,6 +23,8 @@ views:number;
 answers:Array<object>
 }
 const QuestionCard = ({_id,title,tags,author,upvotes,createdAt,answers,views}:QuestionProps) => {
+    console.log(views);
+    
   return (
     <div className='card-wrapper rounded-[10px] p-9 sm:px-11'>
 
@@ -40,25 +42,25 @@ const QuestionCard = ({_id,title,tags,author,upvotes,createdAt,answers,views}:Qu
 
 
         </div>
-        <div className='mt-3.5 flex flex-wrap gap-2'>{tags.map((tag)=>(
+        <div className='mt-3.5 flex flex-wrap gap-2'>{tags?.map((tag)=>(
             <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
         ))}</div>
 
         <div className='flex-between mt-6 w-full flex-wrap gap-3 '>
         <Metric 
-            imgUrl={author.picture}
+            imgUrl={author?.picture}
             alt="Upvotes"
-            value={author.name}
+            value={author?.name}
 
             title={` - asked ${getTimestamp(createdAt)}`}
-            href={`/profile/${author._id}`}
+            href={`/profile/${author?._id}`}
             isAuthor
             textStyles="body-medium text-dark400_light700"
             />
             <Metric 
             imgUrl="/assets/icons/like.svg"
             alt="Upvotes"
-            value={formatNumbers(upvotes??1000)}
+            value={formatNumbers(upvotes?.length)}
             title="Votes"
             textStyles="small-medium text-dark400_light800"
             />
@@ -72,7 +74,7 @@ const QuestionCard = ({_id,title,tags,author,upvotes,createdAt,answers,views}:Qu
                   <Metric 
             imgUrl="/assets/icons/eye.svg"
             alt="eye"
-            value={formatNumbers(views??11000)}
+            value={formatNumbers(views??0)}
             title="Views"
             textStyles="small-medium text-dark400_light800"
             />
