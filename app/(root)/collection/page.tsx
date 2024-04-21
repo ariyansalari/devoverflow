@@ -5,6 +5,7 @@ import NoResult from '@/components/shared/NoResult/NoResult'
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar/LocalSearchBar'
 import { Button } from '@/components/ui/button'
 import { QuestionFilters } from '@/constants/filters'
+import { IQuestion } from '@/database/question.model'
 import { getSavedQuestion } from '@/lib/actions/user.action'
 import { auth } from '@clerk/nextjs'
 import Link from 'next/link'
@@ -33,7 +34,7 @@ clerkId:userId
  </div>
  <HomeFilters />
  <div className='mt-10 flex w-full flex-col gap-6'>
-  {result.questions.length >0? result.questions.map((question)=>(
+  {result.questions.length >0? result.questions.map((question:IQuestion)=>(
   <QuestionCard key={question._id} _id={question._id} title={question.title} tags={question.tags} author={question.author} upvotes={question.upvotes} views={question.views} answers={question.answers} createdAt={question.createdAt}/>
   )):<NoResult
   title={"There's no question saved to show"}
