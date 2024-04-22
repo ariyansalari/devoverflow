@@ -172,3 +172,33 @@ revalidatePath(path)
       
     }
   }
+
+
+  export const getHotQuestion=async()=>{
+    try {
+connectToDatabase()
+const hotQuestion=await Question.find({}).sort({views:-1,upvotes:-1}).limit(5) // decending 
+return hotQuestion
+    }catch (error){
+      console.log(error);
+      throw error
+      
+    }
+  }
+
+  export const getTopPopularTag=async()=>{
+    try {
+connectToDatabase()
+const popularTags=await Tag.aggregate([
+  {
+  $project:{name:1,numberOfQuestions:{$size:"$questions"}}},
+  {$sort:{numberOfQuestions:-1}},
+  {$limit:5}
+])// decending
+return popularTags; 
+    }catch (error){
+      console.log(error);
+      throw error
+      
+    }
+  }
