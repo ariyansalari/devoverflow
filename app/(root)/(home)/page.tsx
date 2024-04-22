@@ -9,7 +9,7 @@ import { getQuestion } from '@/lib'
 import Link from 'next/link'
 import React from 'react'
 
-const Home =async () => {
+const Home =async (searchParams) => {
   
   
 const result =await getQuestion({})

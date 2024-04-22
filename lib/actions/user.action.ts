@@ -105,20 +105,50 @@ throw error
   }
 
 
-  export async function getAllUsers(params:GetAllUsersParams) {
-    try{
-connectToDatabase()
-
-      const {page=1,pageSize=20,filter,searchQuery}=params;
-      const users=await User.find({}).sort({createdAt:-1})
-      return{users}
+  export const getAllUsers = async (params: GetAllUsersParams) => {
+    try {
+      connectToDatabase();
+      const { searchQuery, filter, page = 1, pageSize = 10 } = params;
+      const skipAmount = (page - 1) * pageSize;
+  
+      const query: FilterQuery<typeof User> = {};
+  
+      if (searchQuery) {
+        query.$or = [
+          { name: { $regex: new RegExp(searchQuery, "i") } },
+          { username: { $regex: new RegExp(searchQuery, "i") } },
+        ];
+      }
+      let sortOption = {};
+  
+      switch (filter) {
+        case "new_users":
+          sortOption = { joinedAt: -1 };
+          break;
+        case "old_users":
+          sortOption = { joinedAt: 1 };
+          break;
+        case "top_contributors":
+          sortOption = { reputation: -1 };
+          break;
+        default:
+          break;
+      }
+  
+      const users = await User.find(query)
+        .sort(sortOption)
+        .skip(skipAmount)
+        .limit(pageSize);
+      const totalUsers = await User.countDocuments(query);
+      const isNext = totalUsers > skipAmount + users.length;
+  
+      return { users, isNext };
+    } catch (error) {
+      console.log(error);
+      throw error;
     }
-    catch(error){
-console.log(error);
-throw error
-
-    }
-  }
+  };
+  
 
   export async function getSavedQuestion(params:GetSavedQuestionsParams) {
     try{
