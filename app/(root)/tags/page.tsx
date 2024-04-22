@@ -3,11 +3,15 @@ import NoResult from '@/components/shared/NoResult/NoResult'
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar/LocalSearchBar'
 import { TagFilters } from '@/constants/filters'
 import { getAllTags } from '@/lib/actions/tag.action'
+import { SearchParamsProps } from '@/types'
 import Link from 'next/link'
 import React from 'react'
 
-const page =async () => {
-  const result=await getAllTags({})
+const page =async ({searchParams}:SearchParamsProps) => {
+  const result=await getAllTags({
+     searchQuery:searchParams.q,
+     filter:searchParams.filter
+  })
   
   return (
     <>
@@ -22,7 +26,7 @@ const page =async () => {
 <Link href={`/tags/${tag._id}`} key={tag._id} className='shadow-light100-darknone '>
   <article className=' background-light900_dark200 light-border flex w-full flex-col rounded-2xl border px-8 py-10 sm:w-[260px]'>
 <div className='background-light800_dark400 rounded-sm px-5 py-1.5 w-fit'><p className='paragraph-semibold text-dark300_ligth900'>{tag.name}</p></div>
-<p className='small-medium text-dark-400_ligth500 mt-3.5'><span className='body-semibold primary-text-gradient mr-2.5'>{tag.question.length}+</span> Questions</p>
+<p className='small-medium text-dark-400_ligth500 mt-3.5'><span className='body-semibold primary-text-gradient mr-2.5'>{tag.questions?.length}+</span> Questions</p>
   </article>
    </Link>
 ))):(

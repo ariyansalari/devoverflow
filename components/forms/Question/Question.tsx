@@ -34,13 +34,13 @@ const Question = ({mongoUserId,questionDetails,type}:Props) => {
   const pathname=usePathname()
   const editorRef = useRef(null);
 const [isSubmiting,setIsSubmitiing]=useState(false)
-const parsedQuestionDetails=JSON.parse(questionDetails || '')
-const groupTags=parsedQuestionDetails.tags.map((tag)=>tag.name)
+const parsedQuestionDetails=questionDetails &&JSON.parse(questionDetails || '')
+const groupTags=parsedQuestionDetails && parsedQuestionDetails.tags.map((tag)=>tag.name)
     const form = useForm<z.infer<typeof QuestionsSchema>>({
         resolver: zodResolver(QuestionsSchema),
         defaultValues: {
-          title: parsedQuestionDetails.title||'',
-          explanation:parsedQuestionDetails.content||'',
+          title: parsedQuestionDetails?.title||'',
+          explanation:parsedQuestionDetails?.content||'',
           tags:groupTags||[]
         },
       })
@@ -140,7 +140,7 @@ const groupTags=parsedQuestionDetails.tags.map((tag)=>tag.name)
         onInit={(_evt, editor) => {
           // @ts-ignore
           editorRef.current = editor}}
-        initialValue={parsedQuestionDetails.content || ''}
+        initialValue={parsedQuestionDetails?.content || ''}
         init={{
           height:350,
           menubar: false,

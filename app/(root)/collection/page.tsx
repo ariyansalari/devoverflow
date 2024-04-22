@@ -7,17 +7,21 @@ import { Button } from '@/components/ui/button'
 import { QuestionFilters } from '@/constants/filters'
 import { IQuestion } from '@/database/question.model'
 import { getSavedQuestion } from '@/lib/actions/user.action'
+import { SearchParamsProps } from '@/types'
 import { auth } from '@clerk/nextjs'
 import Link from 'next/link'
 import React from 'react'
 
-const Home =async () => {
+const Home =async ({searchParams}:SearchParamsProps) => {
  const {userId}= auth()
   if(!userId){
     return null
   }
+  
 const result =await getSavedQuestion({
-clerkId:userId
+clerkId:userId,
+searchQuery:searchParams.q,
+filter:searchParams.filter
 })
 
   return (
