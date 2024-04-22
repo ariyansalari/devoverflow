@@ -53,14 +53,34 @@ const Page =async ({params,serachParams}:URLProps) => {
     </div>
     <Stats totalQuestions={userInfo.totalQuestions} totalAnswer={userInfo.totalAnswers}/>
     <div className='mt-10 flex gap-10'>
-    <Tabs defaultValue="top-posts" className="w-[400px]">
-  <TabsList className="background-light800_dark400 min-h-[42px] p-1">
-    <TabsTrigger value="top-posts" className="tab">Top Posts</TabsTrigger>
-    <TabsTrigger value="answers" className="tab">Answers</TabsTrigger>
-  </TabsList>
-  <TabsContent value="top-posts"><QuestionTab serachParams={serachParams} userId={userInfo.user._id} clerkId={clerkId} /></TabsContent>
-  <TabsContent value="answers" className="flex w-full flex-col gap-6"><AnswerTab serachParams={serachParams} userId={userInfo.user._id} clerkId={clerkId}/></TabsContent>
-</Tabs>
+    <Tabs defaultValue="top-posts" className="flex-1">
+          <TabsList className="background-light800_dark400 min-h-[42px] p-1">
+            <TabsTrigger value="top-posts" className="tab">
+              Top Posts
+            </TabsTrigger>
+            <TabsTrigger value="answers" className="tab">
+              Answers
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent
+            value="top-posts"
+            className="mt-5 flex w-full flex-col gap-6"
+          >
+            <QuestionTab
+              userId={userInfo.user._id}
+              clerkId={clerkId}
+              searchParams={serachParams}
+            />
+          </TabsContent>
+          <TabsContent value="answers" className="flex w-full flex-col gap-6">
+            <AnswerTab
+              searchParams={serachParams}
+
+              userId={userInfo.user._id}
+              clerkId={clerkId}
+            />
+          </TabsContent>
+        </Tabs>
     </div>
     </>
   )

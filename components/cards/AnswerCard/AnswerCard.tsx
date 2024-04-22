@@ -4,6 +4,7 @@ import { IQuestion } from "@/database/question.model";
 import { SignedIn } from "@clerk/nextjs";
 import Metric from "@/components/shared/Metric/Metric";
 import { formatNumbers, getTimestamp } from "@/lib/utils";
+import EditDeleteAction from "@/components/shared/EditDeleteAction/EditDeleteAction";
 
 interface AnswerProps {
   _id: string;
@@ -44,9 +45,9 @@ const AnswerCard = ({
           </h3>
         </div>
         <SignedIn>
-          {/* {showActionButtons && (
+          {showActionButtons && (
             <EditDeleteAction type="Answer" itemId={JSON.stringify(_id)} />
-          )} */}
+          )}
         </SignedIn>
         {/* If signed in add edit delete actions */}
       </div>
