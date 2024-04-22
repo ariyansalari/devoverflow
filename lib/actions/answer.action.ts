@@ -2,9 +2,10 @@
 
 import Answer from "@/database/answer.model";
 import { connectToDatabase } from "..";
-import { AnswerVoteParams, CreateAnswerParams, GetAnswersParams } from "./shared.types";
+import { AnswerVoteParams, CreateAnswerParams, DeleteAnswerParams, GetAnswersParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
 import Question from "@/database/question.model";
+import Interaction from "@/database/interaction.model";
 
 export async function createAnswer(params:CreateAnswerParams) {
     try{
@@ -111,3 +112,22 @@ export const downvoteAnswer = async (params: AnswerVoteParams) => {
     }
   };
  
+  export const deleteAnswerAction=async(params:DeleteAnswerParams)=>{
+    try {
+connectToDatabase()
+const {path,answerId}=params
+const answer =await Answer.findById(answerId)
+if(!answer){
+  throw new Error('Answer not found')
+}
+await Answer.deleteOne({_id:answerId})
+await Question.updateMany({_id:answer.question},{$pull:{answers:answerId}});
+
+await Interaction.deleteMany({question:answerId});
+revalidatePath(path)
+    }catch (error){
+      console.log(error);
+      throw error
+      
+    }
+  }
