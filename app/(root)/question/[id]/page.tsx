@@ -74,7 +74,7 @@ const page =async ({searchParams,params}) => {
             <RenderTag key={tag._id} _id={tag._id} name={tag.name} showCount={false}/>
         ))}
     </div>
-<AllAnswers questionId={result._id} userId={mongoUser._id}         totalAnswers={result?.answers?.length}
+<AllAnswers questionId={result._id} userId={mongoUser._id}         totalAnswers={result?.answers?.length} filter={searchParams?.filter}
  />
     <Answer question={result.content} questionId={JSON.stringify(result._id)} authorId={JSON.stringify(mongoUser._id)} />
     </>

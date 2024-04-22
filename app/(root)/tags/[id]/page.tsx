@@ -9,12 +9,13 @@ import { URLProps } from '@/types'
 import Link from 'next/link'
 import React from 'react'
 
-const Page =async ({params,searchParams}:URLProps) => {
+const Page =async ({params,searchParams }:URLProps) => {
     const result =await getQuestionByTagId({
         tagId:params.id,
         page:1,
         searchQuery:searchParams.q
     })
+    
   return (
     <>
     <div className='flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center'> 
