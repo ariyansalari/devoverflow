@@ -1,5 +1,6 @@
 import UsersCard from '@/components/cards/UsersCard/UsersCard'
 import Filter from '@/components/shared/Filter/Filter'
+import Pagination from '@/components/shared/Pagination/Pagination'
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar/LocalSearchBar'
 import { UserFilters } from '@/constants/filters'
 import { getAllUsers } from '@/lib/actions/user.action'
@@ -10,7 +11,8 @@ import React from 'react'
 const page = async( {searchParams}:SearchParamsProps) => {
 const result=await getAllUsers({
   searchQuery:searchParams.q,
-  filter:searchParams.filter
+  filter:searchParams.filter,
+  page:searchParams.page?+searchParams.page:1
 }
     )
   return (
@@ -27,6 +29,11 @@ const result=await getAllUsers({
 ))):(<div className='paragraph-regular text-dark-200_light800 max-w-4x1 mx-auto text-center '><p>No users yet</p>
 <Link  className="mt-1 font-bold text-accent-blue" href={'/sign-up'}>Join to be the first</Link></div>)}
    </section>
+   <div className='mt-10'>
+
+<Pagination pageNumber={searchParams?.page?+searchParams.page:1} isNext={result.isNext} />
+
+</div>
    </>
 
   )

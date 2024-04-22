@@ -9,7 +9,6 @@ const Page =async ({params}) => {
   if(!userId) return null;
   const mongoUser=await getUserById({userId})
   const result=await getQuestionById({questionId:params.id})
-  console.log(result);
   
   return (
 <>
