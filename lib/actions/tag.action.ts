@@ -57,7 +57,7 @@ let sortOption = {};
       break;
   }
   const totalTags=await Tag.countDocuments(query)
-const tags=await Tag.find({}).sort(sortOption).skip(skipAmount).limit(pageSize)
+const tags=await Tag.find(query).sort(sortOption).skip(skipAmount).limit(pageSize)
 const isNext=totalTags>skipAmount+tags.length
     return{tags,isNext}
     }

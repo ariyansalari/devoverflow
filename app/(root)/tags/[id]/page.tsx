@@ -26,7 +26,7 @@ const Page =async ({params,searchParams }:URLProps) => {
      </Link>
     </div>
     <div className='mt-11'>
-   <LocalSearchBar route='/' iconPosition='left' imgSrc='/assets/icons/search.svg' otherClasses="flex-1" placeholder={'search for tag questions'}/>
+   <LocalSearchBar route={`tags/${params.id}`} iconPosition='left' imgSrc='/assets/icons/search.svg' otherClasses="flex-1" placeholder={'search for tag questions'}/>
     </div>
     <HomeFilters />
     <div className='mt-10 flex w-full flex-col gap-6'>

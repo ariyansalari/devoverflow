@@ -63,6 +63,12 @@ export const getJoinedDate = (date: Date): string => {
   return joinedDate;
 };
 
+interface UrlQueryParams{
+  params:string;
+  key:string;
+  value:string |null;
+
+}
 
 export const formUrlQuery = ({ params, key, value }: UrlQueryParams) => {
   const currentUrl = qs.parse(params);
@@ -76,6 +82,10 @@ export const formUrlQuery = ({ params, key, value }: UrlQueryParams) => {
   );
 };
 
+interface RemoveUrlQueryParams{
+  params:string;
+  keys:string[]
+}
 export const removeKeysFromQuery = ({ params, keys }: RemoveUrlQueryParams) => {
   const currentUrl = qs.parse(params);
   keys.forEach((key) => {

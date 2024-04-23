@@ -13,9 +13,8 @@ import { FilterQuery } from "mongoose";
 export async function getQuestion(params:GetQuestionsParams) {
     try{
 connectToDatabase()
-const {searchQuery,page=1,pageSize=10}=params
+const {searchQuery,page=1,pageSize=10,filter}=params
 // calculate the number of posts to skip based on the page number
-
 
 const query:FilterQuery<typeof Question>={}
 if(searchQuery){
@@ -23,7 +22,7 @@ if(searchQuery){
 }
 let sortOption = {};
 
-  switch (searchQuery) {
+  switch (filter) {
     case "newest":
       sortOption = { createdAt: -1 };
       break;
@@ -31,8 +30,8 @@ let sortOption = {};
       sortOption = { views: -1 };
       break;
    
-    case "unanswered":
-      sortOption = { $size: 0 };
+      case "unanswered":
+        query.answers = { $size: 0 };
       break;
 
     default:
@@ -40,7 +39,7 @@ let sortOption = {};
   }
 const skipAmount=(page-1) * pageSize
 
-const questions=await Question.find({}).populate({path:"tags",model:Tag}).populate({path:"author",model:User}).skip(skipAmount).limit(pageSize).sort(sortOption)
+const questions=await Question.find(query).populate({path:"tags",model:Tag}).populate({path:"author",model:User}).skip(skipAmount).limit(pageSize).sort(sortOption)
 const totalQuestions=await Question.countDocuments(query);
 const isNext=totalQuestions>skipAmount+questions.length 
 
