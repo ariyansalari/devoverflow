@@ -20,7 +20,6 @@ interface Props{
   downvote:number
 }
 const Votes = ({type,itemId,userId,upvotes,hasdownVoted,hasSaved,hasupVoted,downvote}:Props) => {
-  console.log(downvote);
   const pathname=usePathname()
   const router=useRouter()
   const handleSave=async()=>{

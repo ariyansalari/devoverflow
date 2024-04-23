@@ -120,9 +120,7 @@ throw error
         ];
       }
       let sortOption = {};
-  console.log(sortOption);
-  console.log(searchQuery);
-  console.log(filter);
+
   
   
       switch (filter) {
