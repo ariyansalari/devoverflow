@@ -20,8 +20,10 @@ const QuestionSchema =new Schema<IQuestion> ({
     downvotes: [{ type: Schema.Types.ObjectId, ref: "User" }],
     author: { type: Schema.Types.ObjectId, ref: "User" },
     answers: [{ type: Schema.Types.ObjectId, ref: "Answer" }],
-    createdAt: { type: Date, default: Date.now() },
+    // createdAt: { type: Date, default: Date.now() },
 
+},{
+    timestamps:true
 })
 
 const Question =models.Question || model('Question',QuestionSchema)
