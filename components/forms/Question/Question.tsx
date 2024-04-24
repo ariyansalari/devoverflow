@@ -22,7 +22,6 @@ import { useRouter,usePathname } from 'next/navigation'
 
 
 
-const type:any='create';
 interface Props {
   mongoUserId:string;
   type?:string;
@@ -35,7 +34,7 @@ const Question = ({mongoUserId,questionDetails,type}:Props) => {
   const editorRef = useRef(null);
 const [isSubmiting,setIsSubmitiing]=useState(false)
 const parsedQuestionDetails=questionDetails &&JSON.parse(questionDetails || '')
-const groupTags=parsedQuestionDetails && parsedQuestionDetails.tags.map((tag)=>tag.name)
+const groupTags=parsedQuestionDetails && parsedQuestionDetails.tags.map((tag:any)=>tag.name)
     const form = useForm<z.infer<typeof QuestionsSchema>>({
         resolver: zodResolver(QuestionsSchema),
         defaultValues: {
@@ -133,6 +132,7 @@ const groupTags=parsedQuestionDetails && parsedQuestionDetails.tags.map((tag)=>t
               <FormLabel className='paragraph-semibold text-dark400_light800 '>Detailed explanation of your problem  <span className='text-primary-500'>*</span></FormLabel>
               <FormControl className='mt-3.5'>
               <Editor
+              
               onBlur={field.onBlur}
               onEditorChange={(content)=>field.onChange(content)}
         apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}

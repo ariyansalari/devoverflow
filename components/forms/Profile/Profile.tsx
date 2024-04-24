@@ -73,9 +73,9 @@ console.log(error);
         name="name"
         render={({ field }) => (
           <FormItem className="space-y-3.5">
-            <FormLabel>Name <span className="text-primary-500">*</span></FormLabel>
+            <FormLabel className="paragraph-semibold text-dark400_light800 ">Name <span className="text-primary-500">*</span></FormLabel>
             <FormControl>
-              <Input placeholder="Your name" {...field} className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border" />
+              <Input placeholder="Your name" {...field} className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border" />
             </FormControl>
             
             <FormMessage />
@@ -87,9 +87,9 @@ console.log(error);
         name="username"
         render={({ field }) => (
           <FormItem className="space-y-3.5">
-            <FormLabel>Username <span className="text-primary-500">*</span></FormLabel>
+            <FormLabel className="paragraph-semibold text-dark400_light800 ">Username <span className="text-primary-500">*</span></FormLabel>
             <FormControl>
-              <Input placeholder="Your username" {...field} className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border" />
+              <Input placeholder="Your username" {...field} className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border" />
             </FormControl>
             
             <FormMessage />
@@ -101,9 +101,9 @@ console.log(error);
         name="portfolioWebsite"
         render={({ field }) => (
           <FormItem className="space-y-3.5">
-            <FormLabel>Portfolio Link </FormLabel>
+            <FormLabel className="paragraph-semibold text-dark400_light800 ">Portfolio Link </FormLabel>
             <FormControl>
-              <Input type="url" placeholder="Your portfolio URL " {...field} className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border" />
+              <Input type="url" placeholder="Your portfolio URL " {...field} className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border" />
             </FormControl>
             
             <FormMessage />
@@ -115,9 +115,9 @@ console.log(error);
         name="location"
         render={({ field }) => (
           <FormItem className="space-y-3.5">
-            <FormLabel>Location</FormLabel>
+            <FormLabel className="paragraph-semibold text-dark400_light800 ">Location</FormLabel>
             <FormControl>
-              <Input  placeholder="Where are your form? " {...field} className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px] border" />
+              <Input  placeholder="Where are your form? " {...field} className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border" />
             </FormControl>  
             
             <FormMessage />
@@ -127,9 +127,9 @@ console.log(error);
                    <FormField
                   render={({ field }) => (
                       <FormItem className="space-y-3.5">
-                          <FormLabel>Bio<span className="text-primary-500">*</span></FormLabel>
+                          <FormLabel className="paragraph-semibold text-dark400_light800 ">Bio<span className="text-primary-500"> *</span></FormLabel>
                        
-                          <Textarea {...field} placeholder="What's special about you? " className="no-focus paragraph-regular light-border-2 background-light700_dark300 text-dark300_light700 min-h-[56px]" />
+                          <Textarea {...field} placeholder="What's special about you? " className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px]" />
                           <FormMessage />
                       </FormItem>
                   )} name={"bio"}      />

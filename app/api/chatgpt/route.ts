@@ -1,12 +1,6 @@
-import { NextResponse } from "next/server"
 
 export const POST=async(request:Request)=>{
+    // eslint-disable-next-line no-unused-vars
     const {question}=await request.json()
 
-    try {
-
-    }
-    catch(error){
-        return NextResponse.json({error:error.message})
-    }
 }

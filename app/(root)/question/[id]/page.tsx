@@ -7,6 +7,7 @@ import Votes from '@/components/shared/Votes/Votes'
 import { getQuestionById } from '@/lib'
 import { getUserById } from '@/lib/actions/user.action'
 import { formatNumbers, getTimestamp } from '@/lib/utils'
+import { URLProps } from '@/types'
 import { auth } from '@clerk/nextjs'
 import { Metadata } from 'next'
 import Image from 'next/image'
@@ -17,7 +18,7 @@ export const metadata:Metadata ={
   title:"Question | Dev Overflow",
 
 }
-const page =async ({searchParams,params}) => {
+const page =async ({searchParams,params}:URLProps) => {
     const {userId:clerkId}=auth()
     let mongoUser;
 

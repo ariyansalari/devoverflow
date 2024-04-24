@@ -19,7 +19,7 @@ interface Props {
 const Answer = ({question,questionId,authorId}:Props) => {
   const pathname=usePathname()
   const [isSubmiting,setIsSubmitiing]=useState(false)
-  const [isSubmitingAi,setIsSubmitiingAi]=useState(false)
+  const [,setIsSubmitiingAi]=useState(false)
 
   const editorRef=useRef(null)
   const form =useForm<z.infer<typeof AnswerSchema>>({

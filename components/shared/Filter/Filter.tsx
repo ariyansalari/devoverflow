@@ -9,8 +9,7 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import { formUrlQuery } from '@/lib/utils';
-import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 interface Props {
 filters:{
     name:string;
@@ -42,10 +41,10 @@ router.push(newUrl,{scroll:false})
   </div>
 
   </SelectTrigger>
-  <SelectContent>
+  <SelectContent className='text-dark500_light700 small-regular border-none bg-light-900 dark:bg-dark-300'>
  <SelectGroup >
     {filters.map((item)=>(
-        <SelectItem key={item.value} value={item.value}>
+        <SelectItem className='focus:bg-light-800 dark:focus:bg-dark-400 cursor-pointer' key={item.value} value={item.value}>
             {item.name}
         </SelectItem>
     ))}

@@ -59,7 +59,7 @@ return ()=>clearTimeout(delayDebounceFn)
   setSearch(e.target.value)
   if(!isOpen) setIsOpen(true)
   if(e.target.value===''&&   isOpen)setIsOpen(false)
-  }} placeholder='Search globally' className='paragraph-regular no-focus shadow-none text-dark400_light700  background-light800_darkgradient border-none outline-none '/>
+  }} placeholder='Search globally' className='paragraph-regular no-focus shadow-none text-dark400_light700  background-light800_darkgradient border-none outline-none bg-transparent placeholder '/>
         </div>
         {isOpen && <GlobalResult/>}
     </div>

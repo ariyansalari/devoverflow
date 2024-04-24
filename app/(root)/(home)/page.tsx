@@ -6,8 +6,9 @@ import Pagination from '@/components/shared/Pagination/Pagination'
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar/LocalSearchBar'
 import { Button } from '@/components/ui/button'
 import { HomePageFilters } from '@/constants/filters'
-import { getQuestion } from '@/lib'
+import { getQuestion, getRecommendedQuestions } from '@/lib'
 import { SearchParamsProps } from '@/types'
+import { auth } from '@clerk/nextjs'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import React from 'react'
@@ -18,13 +19,29 @@ export const metadata:Metadata ={
 }
 
 const Home =async ({searchParams}:SearchParamsProps) => {
-  
-  
-const result =await getQuestion({
-  searchQuery:searchParams.q,
-  filter:searchParams.filter,
-  page:searchParams.page?+searchParams.page:1
-})
+  let result;
+  const {userId}=auth()
+  if(searchParams?.filter==='recommended'){
+if(userId){
+  result =await getRecommendedQuestions({
+    userId,
+    searchQuery:searchParams.q,
+    page:searchParams.page?+searchParams.page:1
+  })
+}else {
+result={
+  questions:[],
+  isNext:false
+}
+}
+  }else{
+     result =await getQuestion({
+      searchQuery:searchParams.q,
+      filter:searchParams.filter,
+      page:searchParams.page?+searchParams.page:1
+    })
+  }
+
 
   return (
     <>
@@ -35,7 +52,7 @@ const result =await getQuestion({
   </Link>
  </div>
  <div className='mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center'>
-<LocalSearchBar route='/' iconPosition='left' imgSrc='/assets/icons/search.svg' otherClasses="flex-1" placeholder={''}/>
+<LocalSearchBar route='/' iconPosition='left' imgSrc='/assets/icons/search.svg' otherClasses="flex-1" placeholder={'Search for questions'}/>
     <Filter filters={HomePageFilters} otherClasses={'min-h-[56px] sm:min-w-[170px] '} containerClasses={'hidden max-md:flex'}/>
  </div>
  <HomeFilters />

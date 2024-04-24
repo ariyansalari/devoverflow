@@ -16,7 +16,7 @@ connectToDatabase()
         const {type,query}=params;
         const regexQuery={$regex:query,$options:'i'};
 
-        let results:string[] =[]
+        let results:any =[]
 
         const modelAndTypes=[
             {model:Question,searchField:"title",type:"question"},
@@ -31,7 +31,7 @@ connectToDatabase()
 // Search Acroos everything
 for(const {model,searchField,type}of modelAndTypes){
     const queryResults=await model.find({[searchField]:regexQuery}).limit(2)
-
+// @ts-ignore
     results.push(...queryResults.map((item)=>({
         title:type==='answer'?`Answers containing ${query}`:item[searchField],
         type,

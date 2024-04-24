@@ -19,9 +19,9 @@ export const Theme = () => {
         {mode==='light'?
         <Image className='active-theme' src={'/assets/icons/sun.svg'}  width={20} height={20} alt={'sun'}/> : <Image className='active-theme' src={'/assets/icons/moon.svg'} width={20} height={20} alt='moon '/>}
       </MenubarTrigger>
-      <MenubarContent className='absolute right-[-3rem] mt-3 min-w-[120px] rounded border py-2 dark:border-dark-400 dark:bg-dark-300'>
+      <MenubarContent className='absolute right-[-3rem] mt-3 min-w-[120px] rounded border py-2 dark:border-dark-400 dark:bg-dark-300 bg-light-900'>
        {themes.map(item=>(
-        <MenubarItem className='dark:focos:bg-dar-400 flex items-center gap-4 px-2.5 py-2 ' onClick={()=>{setMode(item.value)
+        <MenubarItem className='dark:focos:bg-dar-400 flex items-center gap-4 px-2.5 py-2 cursor-pointer focus:bg-light-800 dark:focus:bg-dark-400' onClick={()=>{setMode(item.value)
         if(item.value!=='system'){
           localStorage.theme=item.value
         }else {
