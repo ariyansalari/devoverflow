@@ -6,7 +6,6 @@ import Pagination from '@/components/shared/Pagination/Pagination'
 import LocalSearchBar from '@/components/shared/search/LocalSearchBar/LocalSearchBar'
 import { Button } from '@/components/ui/button'
 import { QuestionFilters } from '@/constants/filters'
-import { IQuestion } from '@/database/question.model'
 import { getSavedQuestion } from '@/lib/actions/user.action'
 import { SearchParamsProps } from '@/types'
 import { auth } from '@clerk/nextjs'
@@ -46,7 +45,7 @@ page:searchParams.page?+searchParams.page:1
  </div>
  <HomeFilters />
  <div className='mt-10 flex w-full flex-col gap-6'>
-  {result.questions.length >0? result.questions.map((question:IQuestion)=>(
+  {result.questions.length >0? result.questions.map((question:any)=>(
   <QuestionCard key={question._id} _id={question._id} title={question.title} tags={question.tags} author={question.author} upvotes={question.upvotes} views={question.views} answers={question.answers} createdAt={question.createdAt}/>
   )):<NoResult
   title={"There's no question saved to show"}

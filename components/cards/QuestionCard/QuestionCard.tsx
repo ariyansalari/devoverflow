@@ -7,24 +7,21 @@ import Link from 'next/link';
 import React from 'react'
 
 interface QuestionProps {
-_id:string;
-title:string;
-clerkId?:string|null;
-tags:{
-    _id:string;
-    name:string;
-}[];
-author :{
-    _id :string;
-    name:string;
-    picture:string;
-
-};
-upvotes:[];
-createdAt:Date;
-views:number;
-answers:Array<object>
-}
+    _id: string;
+    title: string;
+    tags: { _id: string; name: string }[];
+    author: {
+      _id: string;
+      name: string;
+      picture: string;
+      clerkId: string;
+    };
+    upvotes: string[];
+    views: number;
+    answers: Array<Object>;
+    createdAt: Date;
+    clerkId?: string | null;
+  }
 const QuestionCard = ({_id,title,tags,author,upvotes,createdAt,answers,views,clerkId}:QuestionProps) => {
    const showActionButton= clerkId && clerkId===author.clerkId; 
   return (
@@ -63,6 +60,8 @@ const QuestionCard = ({_id,title,tags,author,upvotes,createdAt,answers,views,cle
             isAuthor
             textStyles="body-medium text-dark400_light700"
             />
+            <div className='flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start'>
+
             <Metric 
             imgUrl="/assets/icons/like.svg"
             alt="Upvotes"
@@ -85,6 +84,9 @@ const QuestionCard = ({_id,title,tags,author,upvotes,createdAt,answers,views,cle
             textStyles="small-medium text-dark400_light800"
             />
         </div>
+            
+        </div>
+
     </div>
   )
 }

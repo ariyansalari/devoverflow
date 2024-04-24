@@ -53,7 +53,7 @@ return ()=>clearTimeout(delayDebounceFn)
         <Input          placeholder={placeholder}
 
         value={search}
-        onChange={(e) => setSearch(e.target.value)} type='text'  className='paragraph-regular no-focus placeholder text-dark400_light700 background-light800_darkgradient border-none shadow-none outline-none'/>
+        onChange={(e) => setSearch(e.target.value)} type='text'  className='paragraph-regular no-focus placeholder text-dark400_light700  bg-transparent border-none shadow-none outline-none'/>
         {iconPosition ==='right' && <Image src={imgSrc} alt='search icon' width={24} height={24} className='cursor-pointer'/>}
     </div>
   )
