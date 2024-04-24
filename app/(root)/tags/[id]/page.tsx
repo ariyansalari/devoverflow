@@ -7,9 +7,15 @@ import { Button } from '@/components/ui/button'
 import { IQuestion } from '@/database/question.model'
 import { getQuestionByTagId } from '@/lib/actions/tag.action'
 import { URLProps } from '@/types'
+import { Metadata } from 'next'
 import Link from 'next/link'
 import React from 'react'
 
+
+export const metadata:Metadata ={
+  title:"Tag Detail | Dev Overflow",
+
+}
 const Page =async ({params,searchParams }:URLProps) => {
     const result =await getQuestionByTagId({
         tagId:params.id,

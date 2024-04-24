@@ -8,10 +8,15 @@ import { getQuestionById } from '@/lib'
 import { getUserById } from '@/lib/actions/user.action'
 import { formatNumbers, getTimestamp } from '@/lib/utils'
 import { auth } from '@clerk/nextjs'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
+export const metadata:Metadata ={
+  title:"Question | Dev Overflow",
+
+}
 const page =async ({searchParams,params}) => {
     const {userId:clerkId}=auth()
     let mongoUser;

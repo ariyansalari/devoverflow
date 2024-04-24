@@ -5,9 +5,14 @@ import LocalSearchBar from '@/components/shared/search/LocalSearchBar/LocalSearc
 import { TagFilters } from '@/constants/filters'
 import { getAllTags } from '@/lib/actions/tag.action'
 import { SearchParamsProps } from '@/types'
+import { Metadata } from 'next'
 import Link from 'next/link'
 import React from 'react'
 
+export const metadata:Metadata ={
+   title:"Tags | Dev Overflow",
+ 
+ }
 const page =async ({searchParams}:SearchParamsProps) => {
   const result=await getAllTags({
      searchQuery:searchParams.q,
