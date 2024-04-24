@@ -8,8 +8,14 @@ import { Button } from '@/components/ui/button'
 import { HomePageFilters } from '@/constants/filters'
 import { getQuestion } from '@/lib'
 import { SearchParamsProps } from '@/types'
+import { Metadata } from 'next'
 import Link from 'next/link'
 import React from 'react'
+
+export const metadata:Metadata ={
+  title:"Home | Dev Overflow",
+
+}
 
 const Home =async ({searchParams}:SearchParamsProps) => {
   

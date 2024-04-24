@@ -2,8 +2,12 @@ import Question from '@/components/forms/Question/Question'
 import { getQuestionById } from '@/lib'
 import { getUserById } from '@/lib/actions/user.action'
 import { auth } from '@clerk/nextjs'
+import { Metadata } from 'next'
 import React from 'react'
+export const metadata:Metadata ={
+  title:"Edit Question | Dev Overflow",
 
+}
 const Page =async ({params}) => {
   const {userId}=auth()
   if(!userId) return null;

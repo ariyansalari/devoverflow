@@ -11,7 +11,14 @@ import ProfileLink from '@/components/shared/ProfileLink/ProfileLink'
 import Stats from '@/components/shared/Stats/Stats'
 import QuestionTab from '@/components/shared/QuestionTab/QuestionTab'
 import AnswerTab from '@/components/shared/AnswerTab/AnswerTab'
+import { Metadata } from 'next'
 
+
+
+export const metadata:Metadata ={
+  title:"Profile | Dev Overflow",
+
+}
 const Page =async ({params,searchParams}:URLProps) => {
     const userInfo=await getUserInfo({userId:params.id})
     const {userId:clerkId}=auth()

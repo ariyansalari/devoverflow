@@ -5,9 +5,15 @@ import LocalSearchBar from '@/components/shared/search/LocalSearchBar/LocalSearc
 import { UserFilters } from '@/constants/filters'
 import { getAllUsers } from '@/lib/actions/user.action'
 import { SearchParamsProps } from '@/types'
+import { Metadata } from 'next'
 import Link from 'next/link'
-import React, { Suspense } from 'react'
+import React from 'react'
 
+
+export const metadata:Metadata ={
+  title:"Community | Dev Overflow",
+
+}
 const page = async( {searchParams}:SearchParamsProps) => {
 const result=await getAllUsers({
   searchQuery:searchParams.q,
